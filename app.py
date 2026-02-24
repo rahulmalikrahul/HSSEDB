@@ -6,6 +6,42 @@ import statsmodels.formula.api as smf
 import plotly.express as px
 from scipy.stats import poisson
 
+# 1. Define your users (In a real app, use Streamlit Secrets for this)
+VALID_USERS = {
+    "admin": "Safety2026",
+    "site_manager": "CharlieCheck123",
+    "external_auditor": "ExternalPass!7"
+}
+
+def login_screen():
+    """Returns True if the user is authenticated."""
+    if "authenticated" not in st.session_state:
+        st.session_state["authenticated"] = False
+
+    if not st.session_state["authenticated"]:
+        st.title("🔒 HSSE Engine Access")
+        user = st.text_input("Username")
+        password = st.text_input("Password", type="password")
+        
+        if st.button("Login"):
+            if user in VALID_USERS and VALID_USERS[user] == password:
+                st.session_state["authenticated"] = True
+                st.rerun()
+            else:
+                st.error("Invalid username or password")
+        return False
+    return True
+
+# --- MAIN APP LOGIC ---
+if login_screen():
+    # Put all your existing app code (KPIs, Heatmap, Model) inside this block
+    st.sidebar.button("Logout", on_click=lambda: st.session_state.update({"authenticated": False}))
+    
+    # YOUR EXISTING CODE STARTS HERE...
+    #st.title("🛡️ HSSE Reliability & Drill-Down Dashboard")
+    # ... (rest of your app)
+
+
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="HSSE Reliability Engine", layout="wide")
 
