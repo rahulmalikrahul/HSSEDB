@@ -1,0 +1,10 @@
+{
+  "external_auditor": {
+    "Baseline Strategy": {"A": 10, "O": 20, "M": 75},
+    "High-Activity Audit Plan": {"A": 35, "O": 50, "M": 80},
+    "Maintenance Focus (Zero Harm)": {"A": 15, "O": 30, "M": 98}
+  },
+  "admin": {
+    "Corporate Target 2026": {"A": 25, "O": 45, "M": 90}
+  }
+}
